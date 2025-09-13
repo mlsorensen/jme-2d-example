@@ -1,17 +1,12 @@
 # geometrycats
 
-This is a game built with jMonkeyEngine.
+This is a simple demo game built with jMonkeyEngine.
 
 ## Running
 
 Compile and run using Maven:
 
 ```bash
-mvn compile exec:java
+mvn clean package exec:exec
 ```
-
-The main class is:
-
-```
-com.turboio.games.geometrycats.App
-```
+Or use the 'run' configuration in IntelliJ IDEA.
