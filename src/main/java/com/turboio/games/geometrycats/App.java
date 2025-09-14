@@ -38,12 +38,12 @@ public class App extends SimpleApplication implements ActionListener, AnalogList
     long killCount = 0;
 
     private long enemySpawnCooldown;
-    private float enemySpawnChance = 80;
+    private float enemySpawnChance = 100;
     private Node enemyNode;
 
     public static void main(String[] args) {
         AppSettings settings = new AppSettings(true);
-        settings.setResolution(1280, 720);
+        settings.setResolution(1280, 800);
         settings.setTitle("Geometry Cats");
         App app = new App();
         app.setSettings(settings);
@@ -62,6 +62,14 @@ public class App extends SimpleApplication implements ActionListener, AnalogList
         // turn off stats view (you can leave it on, if you want)
         setDisplayStatView(false);
         setDisplayFps(true);
+
+        // Create a Picture for the background
+        Picture background = new Picture("Background");
+        background.setImage(assetManager, "Textures/background.png", true);
+        background.setWidth(settings.getWidth());
+        background.setHeight(settings.getHeight());
+        background.setPosition(0, 0);
+        guiNode.attachChild(background);
 
         // add a player to the main scene (gui)
         player = getSpatial("player");
@@ -134,6 +142,7 @@ public class App extends SimpleApplication implements ActionListener, AnalogList
             guiNode.attachChild(player);
             yarnCount = 0;
             killCount = 0;
+            enemySpawnChance = 100;
             player.setUserData("alive",true);
         }
 
@@ -253,17 +262,17 @@ public class App extends SimpleApplication implements ActionListener, AnalogList
 
     private void createSeeker() {
         Spatial seeker = getSpatial("seeker");
-        seeker.setLocalTranslation(getSpawnPosition());
+        seeker.setLocalTranslation(getSpawnPosition((float)seeker.getUserData("radius")));
         seeker.addControl(new SeekerControl(player));
         seeker.setUserData("active",false);
         sound.spawn();
         enemyNode.attachChild(seeker);
     }
 
-    private Vector3f getSpawnPosition() {
+    private Vector3f getSpawnPosition(float radius) {
         Vector3f pos;
         do {
-            pos = new Vector3f(new Random().nextInt(settings.getWidth()), new Random().nextInt(settings.getHeight()),0);
+            pos = new Vector3f(new Random().nextInt(settings.getWidth()), new Random().nextInt((int) (settings.getHeight()-200-radius)),0);
         } while (pos.distanceSquared(player.getLocalTranslation()) < 8000);
         return pos;
     }
