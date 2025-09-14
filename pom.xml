@@ -7,7 +7,7 @@
     <!-- ========================================================= -->
     <groupId>com.turboio.games</groupId>
     <artifactId>geometrycats</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
     <name>My JME Application</name>
@@ -138,7 +138,7 @@
                         <argument>-XX:+IgnoreUnrecognizedVMOptions</argument>
                         <argument>-XstartOnFirstThread</argument>
                         <argument>-jar</argument>
-                        <argument>target/geometrycats-0.1.0.jar</argument>
+                        <argument>target/geometrycats-${version}.jar</argument>
                     </arguments>
                 </configuration>
             </plugin>
