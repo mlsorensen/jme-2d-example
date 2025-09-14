@@ -33,10 +33,10 @@ public class SeekerControl extends AbstractControl {
             spatial.move(velocity.mult(tpf*0.1f));
 
             // rotate the seeker
-            if (velocity != Vector3f.ZERO) {
-                spatial.rotateUpTo(velocity.normalize());
-                spatial.rotate(0,0,FastMath.PI/2f);
-            }
+//            if (velocity != Vector3f.ZERO) {
+//                spatial.rotateUpTo(velocity.normalize());
+//                spatial.rotate(0,0,FastMath.PI/2f);
+//            }
         } else {
             // handle the "active"-status
             long dif = System.currentTimeMillis() - spawnTime;
